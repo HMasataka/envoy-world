@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  httpd1:
+    image: httpd
+    container_name: httpd1
+    networks:
+      - envoy-network
+  httpd2:
+    image: httpd
+    container_name: httpd2
+    networks:
+      - envoy-network
+  nginx1:
+    image: nginx
+    container_name: nginx1
+    networks:
+      - envoy-network
+  nginx2:
+    image: nginx
+    container_name: nginx2
+    networks:
+      - envoy-network
+  envoy:
+    image: envoyproxy/envoy:v1.9.0
+    container_name: envoy
+    ports:
+      - 80:80
+    networks:
+      - envoy-network
+    volumes:
+      - ./envoy:/etc/envoy
+networks:
+  envoy-network:
+    driver: bridge
