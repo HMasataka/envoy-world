@@ -22,7 +22,7 @@ services:
     networks:
       - envoy-network
   envoy:
-    image: envoyproxy/envoy:v1.9.0
+    image: envoyproxy/envoy:v1.21.4
     container_name: envoy
     ports:
       - 80:80
